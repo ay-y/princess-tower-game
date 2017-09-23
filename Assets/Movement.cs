@@ -9,11 +9,13 @@ public class Movement : MonoBehaviour {
 	private SpriteRenderer sprRend;
     public float velocityMultiplier;
     public float jumpForce;
+	private Animator anim;
 
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
 		sprRend = GetComponent<SpriteRenderer>();
+		anim = GetComponent<Animator> ();
 
 
 	}
@@ -33,6 +35,7 @@ public class Movement : MonoBehaviour {
     void Update () {
 
         rigidBody.velocity = new Vector3(Input.GetAxis("Horizontal") * velocityMultiplier, rigidBody.velocity.y, rigidBody.velocity.z);
+		anim.SetFloat ("speed", rigidBody.velocity.x);
 		if (rigidBody.velocity.x < 0) {
 			sprRend.flipX = true;
 		}
