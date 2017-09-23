@@ -49,7 +49,12 @@ public class Movement : MonoBehaviour
 
         //if (onGround)
 
-
+        if (onRight || onLeft)
+        {
+            anim.SetBool("onWall", true);
+        }
+        else
+            anim.SetBool("onWall", false);
 
         anim.SetFloat("speed", rigidBody.velocity.x);
         if (rigidBody.velocity.x < 0)
@@ -92,7 +97,6 @@ public class Movement : MonoBehaviour
         }
         else
             onRight = false;
-
 
         if (onLeft && Input.GetAxis("Horizontal") < 1)
         {
