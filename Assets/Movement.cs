@@ -29,14 +29,11 @@ public class Movement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-       // if (other.name == "player")
             onGround = true;
-
     }
 
     private void OnTriggerExit(Collider other)
     {
-       // if (other.name == "player")
             onGround = false;
     }
 
@@ -45,7 +42,7 @@ public class Movement : MonoBehaviour {
     void Update () {
 
         //if (onGround)
-        rigidBody.AddForce(new Vector3(Input.GetAxis("Horizontal") * speedMultiplier, 0.0f, 0.0f));
+
 
 
         anim.SetFloat("speed", rigidBody.velocity.x);
@@ -70,6 +67,59 @@ public class Movement : MonoBehaviour {
     {
         Vector3 left = transform.TransformDirection(Vector3.left);
         Vector3 right = transform.TransformDirection(Vector3.right);
+        Vector3 belowOrigin = new Vector3(transform.position.x, transform.position.y - 1.0f, transform.position.z);
+        Vector3 aboveOrigin = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
+
+
+        if (Physics.Raycast(transform.position, left, 0.5f) || Physics.Raycast(belowOrigin, left, 0.5f) || Physics.Raycast(aboveOrigin, left, 0.5f))
+        {
+            onLeft = true;
+        }
+        else
+            onLeft = false;
+
+        if (Physics.Raycast(transform.position, right, 0.5f) || Physics.Raycast(belowOrigin, right, 0.5f) || Physics.Raycast(aboveOrigin, right, 0.5f))
+        {
+            onRight = true;
+        }
+        else
+             onRight = false;
+
+
+        if (onLeft && Input.GetAxis("Horizontal") < 1)
+        {
+            if (rigidBody.velocity.x <= 1.0f)
+            {
+                rigidBody.velocity = new Vector3(0.0f, -2.0f, rigidBody.velocity.z);
+                if (rigidBody.velocity.y < -5.0f)
+                    rigidBody.velocity = new Vector3(rigidBody.velocity.x, -5.0f, 0.0f);
+            }
+
+            if (Input.GetKeyDown("space"))
+            {
+                rigidBody.AddForce(Vector3.up * jumpForce * 1);
+                rigidBody.AddForce(Vector3.right * jumpForce * 2);
+            }
+        }
+        else if (onRight && Input.GetAxis("Horizontal") > -1)
+        {
+            if (rigidBody.velocity.x >= -1.0f)
+            {
+                rigidBody.velocity = new Vector3(0.0f, -2.0f, rigidBody.velocity.z);
+                if (rigidBody.velocity.y < -5.0f)
+                    rigidBody.velocity = new Vector3(rigidBody.velocity.x, -5.0f, 0.0f);
+            }
+
+            if (Input.GetKeyDown("space"))
+            {
+                rigidBody.AddForce(Vector3.up * jumpForce * 1);
+                rigidBody.AddForce(Vector3.left * jumpForce * 2);
+            }
+        }
+        else
+        {
+            rigidBody.AddForce(new Vector3(Input.GetAxis("Horizontal") * speedMultiplier, 0.0f, 0.0f));
+        }
 
 
         if (rigidBody.velocity.x > maxSpeed)
