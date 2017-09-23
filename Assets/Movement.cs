@@ -4,13 +4,43 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    private Rigidbody rigidBody;
+    private bool onGround = false;
+	private SpriteRenderer sprRend;
+    public float velocityMultiplier;
+    public float jumpForce;
+
+    // Use this for initialization
+    void Start () {
+        rigidBody = GetComponent<Rigidbody>();
+		sprRend = GetComponent<SpriteRenderer>();
+
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        onGround = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        onGround = false;
+    }
+
+
+    // Update is called once per frame
+    void Update () {
+
+        rigidBody.velocity = new Vector3(Input.GetAxis("Horizontal") * velocityMultiplier, rigidBody.velocity.y, rigidBody.velocity.z);
+		if (rigidBody.velocity.x < 0) {
+			sprRend.flipX = true;
+		}
+		if (rigidBody.velocity.x > 0) {
+			sprRend.flipX = false;
+		}
+        if (onGround && Input.GetKeyDown("space"))
+            rigidBody.AddForce(Vector3.up * jumpForce);
+
+    }
 }
