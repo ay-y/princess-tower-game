@@ -4,13 +4,35 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private Rigidbody rigidBody;
+    private bool onGround = false;
+
+    public float velocityMultiplier;
+    public float jumpForce;
+
+    // Use this for initialization
+    void Start () {
+        rigidBody = GetComponent<Rigidbody>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        onGround = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        onGround = false;
+    }
+
+
+    // Update is called once per frame
+    void Update () {
+
+        rigidBody.velocity = new Vector3(Input.GetAxis("Horizontal") * velocityMultiplier, rigidBody.velocity.y, rigidBody.velocity.z);
+     
+        if (onGround && Input.GetKeyDown("space"))
+            rigidBody.AddForce(Vector3.up * jumpForce);
+
+    }
 }
