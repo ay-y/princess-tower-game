@@ -10,12 +10,16 @@ public class Movement : MonoBehaviour
     private bool onGround = false;
     private bool onLeft = false;
     private bool onRight = false;
+    private bool jumpOn = false;
+
+    private float jumpTimer = 0.0f;
 
     private SpriteRenderer sprRend;
     public float speedMultiplier = 40.0f;
     public float airMultiplier = 10.0f;
     public float jumpForce = 400f;
     public float maxSpeed = 8.5f;
+    public float maxUpSpeed = 15.0f;
     public float groundFriction = 0.97f;
     public float airFriction = 0.97f;
 
@@ -46,6 +50,16 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (jumpTimer > 0.0f)
+            jumpTimer -= Time.deltaTime;
+        else
+            jumpOn = false;
+
+        if (Input.GetKeyDown("space"))
+        {
+            jumpOn = true;
+            jumpTimer = 0.1f;
+        }
 
         //if (onGround)
 
@@ -65,8 +79,11 @@ public class Movement : MonoBehaviour
         {
             sprRend.flipX = false;
         }
-        if (onGround && Input.GetKeyDown("space"))
+        if (onGround && jumpOn)
+        {
             rigidBody.AddForce(Vector3.up * jumpForce);
+            jumpOn = false;
+        }
 
 
 
@@ -107,10 +124,11 @@ public class Movement : MonoBehaviour
                     rigidBody.velocity = new Vector3(rigidBody.velocity.x, -2.0f, 0.0f);
             }
 
-            if (Input.GetKeyDown("space"))
+            if (jumpOn)
             {
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);
                 rigidBody.AddForce(Vector3.right * jumpForce * 4);
+                jumpOn = false;
             }
         }
         else if (onRight && Input.GetAxis("Horizontal") > -1)
@@ -121,10 +139,11 @@ public class Movement : MonoBehaviour
                 if (rigidBody.velocity.y < -2.0f)
                     rigidBody.velocity = new Vector3(rigidBody.velocity.x, -2.0f, 0.0f);
             }
-            if (Input.GetKeyDown("space"))
+            if (jumpOn)
             {
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);
                 rigidBody.AddForce(Vector3.left * jumpForce * 4);
+                jumpOn = false;
             }
         }
         else if (onGround)
@@ -145,5 +164,13 @@ public class Movement : MonoBehaviour
             rigidBody.velocity = new Vector3(-maxSpeed, rigidBody.velocity.y, 0.0f);
         }
 
+        if (rigidBody.velocity.y > maxUpSpeed)
+        {
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, maxUpSpeed, 0.0f);
+        }
+        if (rigidBody.velocity.y < (-maxUpSpeed *2))
+        {
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, (-maxUpSpeed * 2), 0.0f);
+        }
     }
 }
