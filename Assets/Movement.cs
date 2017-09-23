@@ -22,12 +22,15 @@ public class Movement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        onGround = true;
+		onGround = true;
+		anim.SetBool ("onGround", true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        onGround = false;
+		onGround = false;
+		anim.SetBool ("onGround", false);
+
     }
 
 
@@ -42,8 +45,8 @@ public class Movement : MonoBehaviour {
 		if (rigidBody.velocity.x > 0) {
 			sprRend.flipX = false;
 		}
-        if (onGround && Input.GetKeyDown("space"))
-            rigidBody.AddForce(Vector3.up * jumpForce);
-
+		if (onGround && Input.GetKeyDown ("space")) {
+			rigidBody.AddForce (Vector3.up * jumpForce);
+		}
     }
 }
