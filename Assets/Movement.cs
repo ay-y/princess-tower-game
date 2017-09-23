@@ -6,14 +6,17 @@ public class Movement : MonoBehaviour {
 
     private Rigidbody rigidBody;
     private bool onGround = false;
-
+	private SpriteRenderer sprRend;
     public float velocityMultiplier;
     public float jumpForce;
 
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
-    }
+		sprRend = GetComponent<SpriteRenderer>();
+
+
+	}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,7 +33,12 @@ public class Movement : MonoBehaviour {
     void Update () {
 
         rigidBody.velocity = new Vector3(Input.GetAxis("Horizontal") * velocityMultiplier, rigidBody.velocity.y, rigidBody.velocity.z);
-     
+		if (rigidBody.velocity.x < 0) {
+			sprRend.flipX = true;
+		}
+		if (rigidBody.velocity.x > 0) {
+			sprRend.flipX = false;
+		}
         if (onGround && Input.GetKeyDown("space"))
             rigidBody.AddForce(Vector3.up * jumpForce);
 
