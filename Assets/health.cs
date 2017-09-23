@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelChange : MonoBehaviour {
+public class health : MonoBehaviour {
 
-    private Rigidbody rigidBody;
+
+    public int hp;
 	// Use this for initialization
 	void Start () {
-        rigidBody = GetComponent<Rigidbody>();
+        hp = 3;
 	}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "bat")
         {
-
-            Application.LoadLevel("Tower2");
+            hp--;
         }
     }
     // Update is called once per frame
     void Update () {
-		
+		if (hp == 0)
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
 	}
 }
