@@ -1,0 +1,25 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public class PlatformMove : MonoBehaviour
+{
+    private float timer; private bool direction; private Rigidbody rigidBody; public float speed;   
+    
+    
+    // Use this for initialization  
+    void Start() {
+        direction = false;
+        timer = 1;
+        rigidBody = GetComponent<rigidBody>();
+        speed = 2f;
+    }          
+    
+    // Update is called once per frame  
+    void Update() {
+        timer -= Time.deltaTime;
+        if (timer > 0.0f) {
+            rigidBody.velocity = Vector3.right * speed;
+        }
+        else if timer.
+    }
+}

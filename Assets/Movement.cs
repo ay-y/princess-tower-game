@@ -12,7 +12,8 @@ public class Movement : MonoBehaviour
     private bool onRight = false;
 
     private SpriteRenderer sprRend;
-    public float speedMultiplier = 66.0f;
+    public float speedMultiplier = 40.0f;
+    public float airMultiplier = 10.0f;
     public float jumpForce = 400f;
     public float maxSpeed = 8.5f;
     public float groundFriction = 0.97f;
@@ -97,36 +98,38 @@ public class Movement : MonoBehaviour
         {
             if (rigidBody.velocity.x <= 1.0f)
             {
-                rigidBody.velocity = new Vector3(0.0f, -2.0f, rigidBody.velocity.z);
-                if (rigidBody.velocity.y < -5.0f)
-                    rigidBody.velocity = new Vector3(rigidBody.velocity.x, -5.0f, 0.0f);
+                rigidBody.velocity = new Vector3(0.0f, rigidBody.velocity.y, rigidBody.velocity.z);
+                if (rigidBody.velocity.y < -2.0f)
+                    rigidBody.velocity = new Vector3(rigidBody.velocity.x, -2.0f, 0.0f);
             }
 
             if (Input.GetKeyDown("space"))
             {
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);
-                rigidBody.AddForce(Vector3.right * jumpForce * 2);
+                rigidBody.AddForce(Vector3.right * jumpForce * 4);
             }
         }
         else if (onRight && Input.GetAxis("Horizontal") > -1)
         {
             if (rigidBody.velocity.x >= -1.0f)
             {
-                rigidBody.velocity = new Vector3(0.0f, -2.0f, rigidBody.velocity.z);
-                if (rigidBody.velocity.y < -5.0f)
-                    rigidBody.velocity = new Vector3(rigidBody.velocity.x, -5.0f, 0.0f);
+                rigidBody.velocity = new Vector3(0.0f, rigidBody.velocity.y, rigidBody.velocity.z);
+                if (rigidBody.velocity.y < -2.0f)
+                    rigidBody.velocity = new Vector3(rigidBody.velocity.x, -2.0f, 0.0f);
             }
-
             if (Input.GetKeyDown("space"))
             {
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);
-                rigidBody.AddForce(Vector3.left * jumpForce * 2);
+                rigidBody.AddForce(Vector3.left * jumpForce * 4);
             }
         }
-        else
+        else if (onGround)
         {
             rigidBody.AddForce(new Vector3(Input.GetAxis("Horizontal") * speedMultiplier, 0.0f, 0.0f));
         }
+        else
+            rigidBody.AddForce(new Vector3(Input.GetAxis("Horizontal") * airMultiplier, 0.0f, 0.0f));
+
 
 
         if (rigidBody.velocity.x > maxSpeed)
