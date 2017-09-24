@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         onGround = true;
         anim.SetBool("onGround", true);
@@ -44,12 +44,14 @@ public class Movement : MonoBehaviour
     {
         onGround = false;
         anim.SetBool("onGround", false);
-    }
+    }*/
 
 
     // Update is called once per frame
     void Update()
     {
+
+
         if (jumpTimer > 0.0f)
             jumpTimer -= Time.deltaTime;
         else
@@ -95,20 +97,33 @@ public class Movement : MonoBehaviour
     }
     void FixedUpdate()
     {
+
+
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.0f))
+        {
+            onGround = true;
+            anim.SetBool("onGround", true);
+        }
+        else
+        {
+            onGround = false;
+            anim.SetBool("onGround", false);
+        }
+
         Vector3 left = transform.TransformDirection(Vector3.left);
         Vector3 right = transform.TransformDirection(Vector3.right);
-        Vector3 belowOrigin = new Vector3(transform.position.x, transform.position.y - 1.0f, transform.position.z);
-        Vector3 aboveOrigin = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
+        Vector3 belowOrigin = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+        Vector3 aboveOrigin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
 
 
-        if (Physics.Raycast(transform.position, left, 0.5f, 9) || Physics.Raycast(belowOrigin, left, 0.5f, 9) || Physics.Raycast(aboveOrigin, left, 0.5f, 9))
+        if ((Physics.Raycast(transform.position, left, 0.5f, 9) || Physics.Raycast(belowOrigin, left, 0.5f, 9) || Physics.Raycast(aboveOrigin, left, 0.5f, 9)) && !onGround)
         {
             onLeft = true;
         }
         else
             onLeft = false;
 
-        if (Physics.Raycast(transform.position, right, 0.5f, 9) || Physics.Raycast(belowOrigin, right, 0.5f, 9) || Physics.Raycast(aboveOrigin, right, 0.5f, 9))
+        if ((Physics.Raycast(transform.position, right, 0.5f, 9) || Physics.Raycast(belowOrigin, right, 0.5f, 9) || Physics.Raycast(aboveOrigin, right, 0.5f, 9)) && !onGround)
         {
             onRight = true;
         }
@@ -119,7 +134,7 @@ public class Movement : MonoBehaviour
         {
             if (rigidBody.velocity.x <= 1.0f)
             {
-                rigidBody.velocity = new Vector3(0.0f, rigidBody.velocity.y, rigidBody.velocity.z);
+                rigidBody.velocity = new Vector3(0.0f, rigidBody.velocity.y * 0.99f, rigidBody.velocity.z);
                 if (rigidBody.velocity.y < -2.0f)
                     rigidBody.velocity = new Vector3(rigidBody.velocity.x, -2.0f, 0.0f);
             }
@@ -135,7 +150,7 @@ public class Movement : MonoBehaviour
         {
             if (rigidBody.velocity.x >= -1.0f)
             {
-                rigidBody.velocity = new Vector3(0.0f, rigidBody.velocity.y, rigidBody.velocity.z);
+                rigidBody.velocity = new Vector3(0.0f, rigidBody.velocity.y * 0.99f, rigidBody.velocity.z);
                 if (rigidBody.velocity.y < -2.0f)
                     rigidBody.velocity = new Vector3(rigidBody.velocity.x, -2.0f, 0.0f);
             }
@@ -172,5 +187,10 @@ public class Movement : MonoBehaviour
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, (-maxUpSpeed * 2), 0.0f);
         }
-    }
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), 0.75f))
+        {
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, -0.1f, 0.0f);
+        }
+
+        }
 }
