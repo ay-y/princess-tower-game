@@ -1,15 +1,11 @@
 fileFormatVersion: 2
-guid: 5dbb002c06c1db14794a8187a42b6f8e
-timeCreated: 1506197309
+guid: ce37bf106cba1e84483efa242ac9f3c2
+timeCreated: 1506281917
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Pr_start_kickR_0
-    21300002: Pr_start_kickR_1
-    21300004: Pr_start_kickR_2
-    21300006: Pr_start_kickR_3
-    21300008: Pr_start_kickR_4
-    21300010: Pr_start_kickR_5
+    21300000: torch_0
+    21300002: torch_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -81,85 +77,29 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pr_start_kickR_0
+      name: torch_0
       rect:
         serializedVersion: 2
-        x: 48
+        x: 1
         y: 0
-        width: 132
-        height: 252
+        width: 10
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Pr_start_kickR_1
+      name: torch_1
       rect:
         serializedVersion: 2
-        x: 304
+        x: 14
         y: 0
-        width: 132
-        height: 244
+        width: 10
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Pr_start_kickR_2
-      rect:
-        serializedVersion: 2
-        x: 556
-        y: 0
-        width: 136
-        height: 248
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Pr_start_kickR_3
-      rect:
-        serializedVersion: 2
-        x: 808
-        y: 4
-        width: 144
-        height: 244
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Pr_start_kickR_4
-      rect:
-        serializedVersion: 2
-        x: 1068
-        y: 8
-        width: 144
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Pr_start_kickR_5
-      rect:
-        serializedVersion: 2
-        x: 1324
-        y: 8
-        width: 144
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
