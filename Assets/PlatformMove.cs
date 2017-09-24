@@ -11,7 +11,7 @@ public class PlatformMove : MonoBehaviour
         direction = false;
         timer = duration;
         rigidBody = GetComponent<Rigidbody>();
-        speed = 0.5f;
+        
     }
     
     // Update is called once per frame  
