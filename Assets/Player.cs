@@ -2,26 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class health : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
 
-    public int hp;
-	// Use this for initialization
-	void Start () {
-        hp = 3;
-	}
+    public int health;
+    // Use this for initialization
+    void Start()
+    {
+        health = 3;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "bat")
         {
-            hp--;
+            health--;
         }
     }
     // Update is called once per frame
-    void Update () {
-		if (hp == 0)
+    void Update()
+    {
+        if (health == 0)
         {
             Application.LoadLevel(Application.loadedLevel);
         }
-	}
+    }
 }
