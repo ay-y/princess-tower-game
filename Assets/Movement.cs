@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     public float airMultiplier = 10.0f;
     public float jumpForce = 400f;
     public float maxSpeed = 8.5f;
-    public float maxUpSpeed = 15.0f;
+    public float maxUpSpeed = 10.0f;
     public float groundFriction = 0.97f;
     public float airFriction = 0.97f;
 
@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour
         else
             jumpOn = false;
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") || Input.GetKeyDown("up") || Input.GetKeyDown("w"))
         {
             jumpOn = true;
             jumpTimer = 0.1f;
@@ -101,14 +101,14 @@ public class Movement : MonoBehaviour
         Vector3 aboveOrigin = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
 
 
-        if (Physics.Raycast(transform.position, left, 0.5f) || Physics.Raycast(belowOrigin, left, 0.5f) || Physics.Raycast(aboveOrigin, left, 0.5f))
+        if (Physics.Raycast(transform.position, left, 0.5f, 9) || Physics.Raycast(belowOrigin, left, 0.5f, 9) || Physics.Raycast(aboveOrigin, left, 0.5f, 9))
         {
             onLeft = true;
         }
         else
             onLeft = false;
 
-        if (Physics.Raycast(transform.position, right, 0.5f) || Physics.Raycast(belowOrigin, right, 0.5f) || Physics.Raycast(aboveOrigin, right, 0.5f))
+        if (Physics.Raycast(transform.position, right, 0.5f, 9) || Physics.Raycast(belowOrigin, right, 0.5f, 9) || Physics.Raycast(aboveOrigin, right, 0.5f, 9))
         {
             onRight = true;
         }
