@@ -34,18 +34,10 @@ public class Movement : MonoBehaviour
 
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        onGround = true;
-        anim.SetBool("onGround", true);
+        
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        onGround = false;
-        anim.SetBool("onGround", false);
-    }*/
-
 
     // Update is called once per frame
     void Update()
@@ -179,14 +171,18 @@ public class Movement : MonoBehaviour
             rigidBody.velocity = new Vector3(-maxSpeed, rigidBody.velocity.y, 0.0f);
         }
 
+        // set a maximum upward speed
         if (rigidBody.velocity.y > maxUpSpeed)
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, maxUpSpeed, 0.0f);
         }
+        // set a maximum downward speed
         if (rigidBody.velocity.y < (-maxUpSpeed *2))
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, (-maxUpSpeed * 2), 0.0f);
         }
+
+        // smooth out colliding with ceilings ( stops friction by 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), 0.75f))
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, -0.1f, 0.0f);
