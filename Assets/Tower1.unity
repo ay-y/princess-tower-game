@@ -1621,6 +1621,24 @@ Transform:
   m_PrefabParentObject: {fileID: 4365854454886500, guid: b93f81e506964d44bb14f3cb843a0710,
     type: 2}
   m_PrefabInternal: {fileID: 1192238464}
+--- !u!1 &1205060038 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1673683818703134, guid: 94aa9ed25eed45d499d308815d831a0b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1980998202}
+--- !u!114 &1205060044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1205060038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa15c7363ebd2840ab232ad28ebe67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1304978431}
+  rig: {fileID: 1304978435}
 --- !u!1001 &1255779474
 Prefab:
   m_ObjectHideFlags: 0
@@ -1724,6 +1742,17 @@ Prefab:
 --- !u!1 &1304978429 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1023036478985378, guid: 440842e48eaedf64fa7bffd1c4679575,
+    type: 2}
+  m_PrefabInternal: {fileID: 1429313159}
+--- !u!114 &1304978431 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114042763294202946, guid: 440842e48eaedf64fa7bffd1c4679575,
+    type: 2}
+  m_PrefabInternal: {fileID: 1429313159}
+  m_Script: {fileID: 11500000, guid: 4bcb90999f143e648829ed0f7ef22f72, type: 3}
+--- !u!54 &1304978435 stripped
+Rigidbody:
+  m_PrefabParentObject: {fileID: 54472825614599574, guid: 440842e48eaedf64fa7bffd1c4679575,
     type: 2}
   m_PrefabInternal: {fileID: 1429313159}
 --- !u!65 &1304978439
@@ -1852,6 +1881,15 @@ Prefab:
     - target: {fileID: 4257745946501756, guid: 440842e48eaedf64fa7bffd1c4679575, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114801430166725590, guid: 440842e48eaedf64fa7bffd1c4679575,
+        type: 2}
+      propertyPath: rigidBody
+      value: 
+      objectReference: {fileID: 1304978435}
+    - target: {fileID: 1023036478985378, guid: 440842e48eaedf64fa7bffd1c4679575, type: 2}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 440842e48eaedf64fa7bffd1c4679575, type: 2}
