@@ -14,12 +14,13 @@ public class Player : MonoBehaviour
     private Transform transfrom;
     public AudioClip dead;
     AudioSource audioSource;
-    public bool alive = true;
+    public bool alive;
 
     // Use this for initialization
     void Start()
     {
         health = 3;
+        alive = true;
         sprRend = GetComponent<SpriteRenderer>();
         transfrom = GetComponent<Transform>();
         audioSource = GetComponent<AudioSource>();

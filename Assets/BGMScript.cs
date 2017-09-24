@@ -5,15 +5,15 @@ using UnityEngine;
 public class BGMScript : MonoBehaviour
 {
 
-    AudioSource audioSource;
-    public GameObject ay;
+    public AudioSource audioSource;
+    public Player player;
 
 
     // Use this for initialization
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        ay.GetComponent<Player>();
+        audioSource.Play();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         
     }
 
@@ -21,7 +21,7 @@ public class BGMScript : MonoBehaviour
     void Update()
     {
         
-        if (ay.GetComponent<Player>().alive == false)
+        if (player.alive == false)
         {
             audioSource.mute = true;
         }
