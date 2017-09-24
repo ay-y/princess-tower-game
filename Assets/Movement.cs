@@ -11,7 +11,10 @@ public class Movement : MonoBehaviour
     private bool onLeft = false;
     private bool onRight = false;
     private bool jumpOn = false;
-
+    AudioSource audioSource;
+    public AudioClip jump;
+    public AudioClip slide;
+    public AudioClip land;
     private float jumpTimer = 0.0f;
 
     private SpriteRenderer sprRend;
@@ -31,12 +34,12 @@ public class Movement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         sprRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        audioSource.PlayOneShot(land, 1.0f);
     }
 
     // Update is called once per frame
@@ -60,6 +63,7 @@ public class Movement : MonoBehaviour
         if (onRight || onLeft)
         {
             anim.SetBool("onWall", true);
+            audioSource.PlayOneShot(slide, 0.5f);
         }
         else
             anim.SetBool("onWall", false);
@@ -77,6 +81,7 @@ public class Movement : MonoBehaviour
         {
             rigidBody.AddForce(Vector3.up * jumpForce);
             jumpOn = false;
+            audioSource.PlayOneShot(jump, 0.5f);
         }
 
 
@@ -136,6 +141,7 @@ public class Movement : MonoBehaviour
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);
                 rigidBody.AddForce(Vector3.right * jumpForce * 4);
                 jumpOn = false;
+                audioSource.PlayOneShot(jump, 1.0f);
             }
         }
         else if (onRight && Input.GetAxis("Horizontal") > -1)
@@ -151,6 +157,7 @@ public class Movement : MonoBehaviour
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);
                 rigidBody.AddForce(Vector3.left * jumpForce * 4);
                 jumpOn = false;
+                audioSource.PlayOneShot(jump, 0.5f);
             }
         }
         else if (onGround)
