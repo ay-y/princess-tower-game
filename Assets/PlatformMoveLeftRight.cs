@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class PlatformMove : MonoBehaviour
+public class PlatformMoveLeftRight : MonoBehaviour
 {
     private float timer; private bool direction; private Rigidbody rigidBody; public float speed;
     public float duration = 4;
