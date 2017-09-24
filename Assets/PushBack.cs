@@ -18,7 +18,6 @@ public class PushBack : MonoBehaviour {
         if (other.tag == "Player")
         {
             rig.AddForce(Vector3.left * 1000f);
-            rig.AddForce(Vector3.up * 500f);
         }
     }
     // Update is called once per frame

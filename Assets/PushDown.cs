@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PushRight : MonoBehaviour
+public class PushDown : MonoBehaviour
 {
 
     public Player player;
@@ -19,7 +19,7 @@ public class PushRight : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            rig.AddForce(Vector3.right * 1000f);
+            rig.AddForce(Vector3.down * 500f);
         }
     }
     // Update is called once per frame
