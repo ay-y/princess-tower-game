@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 
 
     public int health;
+    private float timer = 0.0f;
     // Use this for initialization
     void Start()
     {
@@ -14,14 +15,19 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "bat")
+        if (other.tag == "bat" && timer < 0.0f)
         {
             health--;
+            timer = 1.0f;
         }
     }
     // Update is called once per frame
     void Update()
     {
+        if (timer >= -0.1f)
+        {
+            timer -= Time.deltaTime;
+        }
         if (health <= 0)
         {
             Application.LoadLevel(Application.loadedLevel);

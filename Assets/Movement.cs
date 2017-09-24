@@ -125,7 +125,7 @@ public class Movement : MonoBehaviour
         else
             onRight = false;
 
-        if (onLeft && Input.GetAxis("Horizontal") < 1)
+        if (onLeft)
         {
             if (rigidBody.velocity.x <= 1.0f)
             {
@@ -141,8 +141,12 @@ public class Movement : MonoBehaviour
                 jumpOn = false;
                 audioSource.PlayOneShot(jump, 1.0f);
             }
+            if (Input.GetAxis("Horizontal") >= 1)
+            {
+                rigidBody.velocity = new Vector3(5.0f, rigidBody.velocity.y, 0.0f);
+            }
         }
-        else if (onRight && Input.GetAxis("Horizontal") > -1)
+        else if (onRight)
         {
             if (rigidBody.velocity.x >= -1.0f)
             {
@@ -156,6 +160,10 @@ public class Movement : MonoBehaviour
                 rigidBody.AddForce(Vector3.left * jumpForce * 4);
                 jumpOn = false;
                 audioSource.PlayOneShot(jump, 0.5f);
+            }
+            if (Input.GetAxis("Horizontal") <= -1)
+            {
+                rigidBody.velocity = new Vector3(-5.0f, rigidBody.velocity.y, 0.0f);
             }
         }
         else if (onGround)
