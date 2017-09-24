@@ -6,7 +6,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    private Rigidbody rigidBody;
+    public Rigidbody rigidBody;
     private bool onGround = false;
     private bool onLeft = false;
     private bool onRight = false;
@@ -31,7 +31,6 @@ public class Movement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody>();
         sprRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
@@ -63,7 +62,6 @@ public class Movement : MonoBehaviour
         if (onRight || onLeft)
         {
             anim.SetBool("onWall", true);
-            audioSource.PlayOneShot(slide, 0.5f);
         }
         else
             anim.SetBool("onWall", false);
