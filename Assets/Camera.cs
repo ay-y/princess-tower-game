@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour {
 
-    private Rigidbody rigidBody;
-    public float cameraSpeed;
+    public Transform target;
 
-	// Use this for initialization
-	void Start () {
-        rigidBody = GetComponent<Rigidbody>();
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        rigidBody.velocity = new Vector3(0.0f, cameraSpeed, 0.0f);
 
+    // Update is called once per frame
+    void Update()
+    {
+        transform.position = new Vector3(transform.position.x, target.position.y, transform.position.z);
     }
+
 }
