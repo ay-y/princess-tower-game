@@ -16,6 +16,9 @@ public class HUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        HeartUI.sprite = HeartSprites[player.health];
+        if (player.health >= 0)
+        {
+            HeartUI.sprite = HeartSprites[player.health];
+        }
 	}
 }
