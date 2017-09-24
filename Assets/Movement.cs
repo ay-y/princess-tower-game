@@ -188,7 +188,7 @@ public class Movement : MonoBehaviour
         }
 
         // smooth out colliding with ceilings ( stops friction by 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), 0.75f, 8))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), 0.65f, 9))
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, -0.1f, 0.0f);
         }
