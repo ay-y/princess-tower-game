@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private Transform transfrom;
     public AudioClip dead;
     AudioSource audioSource;
-    public bool notplayed = true;
+    public bool alive = true;
 
     // Use this for initialization
     void Start()
@@ -62,10 +62,10 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             timer2 -= Time.deltaTime;
-            if (notplayed)
+            if (alive)
             {
                 audioSource.PlayOneShot(dead, 1.0f);
-                notplayed = false;
+                alive = false;
             }
             transfrom.transform.position = new Vector3(transfrom.transform.position.x, transfrom.transform.position.y, 1.0f);
             if (timer2 <= 0.0f)

@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour
         sprRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        alive = GetComponent<Player>().notplayed;
+        alive = GetComponent<Player>().alive;
     }
 
     private void OnTriggerEnter(Collider other)
