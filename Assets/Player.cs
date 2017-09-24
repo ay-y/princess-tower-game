@@ -8,14 +8,21 @@ public class Player : MonoBehaviour
 
     public int health;
     private float timer = 0.0f;
+    private float timer2 = 4.0f;
     private bool flash = false;
     private SpriteRenderer sprRend;
+    private Transform transfrom;
+    public AudioClip dead;
+    AudioSource audioSource;
+    private bool notplayed = true;
 
     // Use this for initialization
     void Start()
     {
         health = 3;
         sprRend = GetComponent<SpriteRenderer>();
+        transfrom = GetComponent<Transform>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -54,7 +61,15 @@ public class Player : MonoBehaviour
         }
         if (health <= 0)
         {
-            Application.LoadLevel(Application.loadedLevel);
+            timer2 -= Time.deltaTime;
+            if (notplayed)
+            {
+                audioSource.PlayOneShot(dead, 1.0f);
+                notplayed = false;
+            }
+            transfrom.transform.position = new Vector3(transfrom.transform.position.x, transfrom.transform.position.y, 1.0f);
+            if (timer2 <= 0.0f)
+                Application.LoadLevel(Application.loadedLevel);
         }
     }
 }
