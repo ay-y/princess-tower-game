@@ -5,14 +5,14 @@ using UnityEngine;
 public class BGMScript : MonoBehaviour
 {
 
-    //AudioSource audioSource;
+    AudioSource audioSource;
     public GameObject ay;
 
 
     // Use this for initialization
     void Start()
     {
-        //audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         ay.GetComponent<Player>();
         
     }
@@ -21,9 +21,9 @@ public class BGMScript : MonoBehaviour
     void Update()
     {
         
-        if (ay.GetComponent<Player>().notplayed == true)
+        if (ay.GetComponent<Player>().alive == false)
         {
-            //audioSouce.mute;
+            audioSource.mute = true;
         }
     }
 }

@@ -16,7 +16,7 @@ public class Camera : MonoBehaviour {
     void Update()
     {
         
-        if (ay.GetComponent<Player>().notplayed == true)
+        if (ay.GetComponent<Player>().alive == true)
         {
             transform.position = new Vector3(transform.position.x, target.position.y, transform.position.z);
         }
