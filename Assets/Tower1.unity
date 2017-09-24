@@ -975,7 +975,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6e94cb5263ffcfc4695cad8ba17efa4c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 00c0fe7fdd0065a439144ac9beeb1244, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2143,6 +2143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1304978442}
+  ay: {fileID: 1304978429}
 --- !u!1001 &846390066
 Prefab:
   m_ObjectHideFlags: 0
@@ -3573,6 +3574,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  dead: {fileID: 8300000, guid: 0b60e28356b594b43aaf867258915291, type: 3}
+  notplayed: 1
 --- !u!65 &1304978432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3724,6 +3727,7 @@ MonoBehaviour:
   maxUpSpeed: 15
   groundFriction: 0.97
   airFriction: 0.97
+  alive: 0
 --- !u!114 &1304978437
 MonoBehaviour:
   m_ObjectHideFlags: 0

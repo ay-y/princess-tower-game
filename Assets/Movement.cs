@@ -25,6 +25,7 @@ public class Movement : MonoBehaviour
     public float maxUpSpeed = 10.0f;
     public float groundFriction = 0.97f;
     public float airFriction = 0.97f;
+    public bool alive;
 
     private Animator anim;
 
@@ -34,6 +35,7 @@ public class Movement : MonoBehaviour
         sprRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        alive = GetComponent<Player>().notplayed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,55 +46,56 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        if (jumpTimer > 0.0f)
-            jumpTimer -= Time.deltaTime;
-        else
-            jumpOn = false;
-
-        if (Input.GetKeyDown("space") || Input.GetKeyDown("up") || Input.GetKeyDown("w"))
+        if (alive)
         {
-            jumpOn = true;
-            jumpTimer = 0.1f;
+
+            if (jumpTimer > 0.0f)
+                jumpTimer -= Time.deltaTime;
+            else
+                jumpOn = false;
+
+            if (Input.GetKeyDown("space") || Input.GetKeyDown("up") || Input.GetKeyDown("w"))
+            {
+                jumpOn = true;
+                jumpTimer = 0.1f;
+            }
+
+            //if (onGround)
+
+            if (onRight || onLeft)
+            {
+                anim.SetBool("onWall", true);
+            }
+            else
+                anim.SetBool("onWall", false);
+
+            anim.SetFloat("speed", rigidBody.velocity.x);
+            if (rigidBody.velocity.x < 0)
+            {
+                sprRend.flipX = true;
+            }
+            if (rigidBody.velocity.x > 0)
+            {
+                sprRend.flipX = false;
+            }
+            if (onGround && jumpOn)
+            {
+                rigidBody.AddForce(Vector3.up * jumpForce);
+                jumpOn = false;
+                audioSource.PlayOneShot(jump, 0.5f);
+            }
+
+
+
+            if (onGround)
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x * groundFriction, rigidBody.velocity.y, rigidBody.velocity.z);
+            else
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x * airFriction, rigidBody.velocity.y, rigidBody.velocity.z);
         }
-
-        //if (onGround)
-
-        if (onRight || onLeft)
-        {
-            anim.SetBool("onWall", true);
-        }
-        else
-            anim.SetBool("onWall", false);
-
-        anim.SetFloat("speed", rigidBody.velocity.x);
-        if (rigidBody.velocity.x < 0)
-        {
-            sprRend.flipX = true;
-        }
-        if (rigidBody.velocity.x > 0)
-        {
-            sprRend.flipX = false;
-        }
-        if (onGround && jumpOn)
-        {
-            rigidBody.AddForce(Vector3.up * jumpForce);
-            jumpOn = false;
-            audioSource.PlayOneShot(jump, 0.5f);
-        }
-
-
-
-        if (onGround)
-            rigidBody.velocity = new Vector3(rigidBody.velocity.x * groundFriction, rigidBody.velocity.y, rigidBody.velocity.z);
-        else
-            rigidBody.velocity = new Vector3(rigidBody.velocity.x * airFriction, rigidBody.velocity.y, rigidBody.velocity.z);
-
     }
     void FixedUpdate()
     {
-
+        if (alive) {  
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.0f, 9))
         {
@@ -200,6 +203,7 @@ public class Movement : MonoBehaviour
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, -0.1f, 0.0f);
         }
-
+        }
+        
         }
 }

@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private Transform transfrom;
     public AudioClip dead;
     AudioSource audioSource;
-    private bool notplayed = true;
+    public bool notplayed = true;
 
     // Use this for initialization
     void Start()
