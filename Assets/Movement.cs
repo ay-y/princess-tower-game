@@ -94,7 +94,7 @@ public class Movement : MonoBehaviour
     {
 
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.0f))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.0f, 9))
         {
             onGround = true;
             anim.SetBool("onGround", true);
