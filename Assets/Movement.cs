@@ -40,7 +40,7 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        audioSource.PlayOneShot(land, 1.0f);
+        audioSource.PlayOneShot(land, 0.2f);
     }
 
     // Update is called once per frame
