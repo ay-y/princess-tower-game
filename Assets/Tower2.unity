@@ -4624,7 +4624,8 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114069302648437172, guid: 440842e48eaedf64fa7bffd1c4679575, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 440842e48eaedf64fa7bffd1c4679575, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &739922626
@@ -6666,7 +6667,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 99f3c648f074d734dbf50d0b89bbef82, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.354
+  m_Volume: 0.137
   m_Pitch: 1
   Loop: 0
   Mute: 0
