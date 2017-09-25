@@ -41,7 +41,7 @@ public class SlideSound : MonoBehaviour
         }
         else
         {
-            audioSource.enabled = false;
+            audioSource.Stop();
             timer = 0.0f;
         }
 
