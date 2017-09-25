@@ -99,9 +99,14 @@ public class Movement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (alive) {  
+        if (alive) {
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1.0f, 9))
+            Vector3 down = transform.TransformDirection(Vector3.down);
+            Vector3 leftOrigin = new Vector3(transform.position.x - 0.2f, transform.position.y, transform.position.z);
+            Vector3 rightOrigin = new Vector3(transform.position.x + 0.2f, transform.position.y, transform.position.z);
+
+
+            if (Physics.Raycast(transform.position, down, 1.0f, 9) || Physics.Raycast(leftOrigin, down, 1.0f, 9) || Physics.Raycast(rightOrigin, down, 1.0f, 9))
         {
             onGround = true;
             anim.SetBool("onGround", true);
@@ -137,9 +142,11 @@ public class Movement : MonoBehaviour
             if (rigidBody.velocity.x <= 1.0f)
             {
                 rigidBody.velocity = new Vector3(0.0f, rigidBody.velocity.y * 0.99f, rigidBody.velocity.z);
-                if (rigidBody.velocity.y < -2.0f)
-                    rigidBody.velocity = new Vector3(rigidBody.velocity.x, -2.0f, 0.0f);
-            }
+                if (rigidBody.velocity.y < -2.0f && (Input.GetAxis("Vertical") > -1.0f))
+                        rigidBody.velocity = new Vector3(rigidBody.velocity.x, -2.0f, 0.0f);
+                    else if (rigidBody.velocity.y < -5.0f && (Input.GetAxis("Vertical") <= -1.0f))
+                        rigidBody.velocity = new Vector3(rigidBody.velocity.x, -5.0f, 0.0f);
+                }
 
             if (jumpOn)
             {
@@ -158,9 +165,11 @@ public class Movement : MonoBehaviour
             if (rigidBody.velocity.x >= -1.0f)
             {
                 rigidBody.velocity = new Vector3(0.0f, rigidBody.velocity.y * 0.99f, rigidBody.velocity.z);
-                if (rigidBody.velocity.y < -2.0f)
-                    rigidBody.velocity = new Vector3(rigidBody.velocity.x, -2.0f, 0.0f);
-            }
+                    if (rigidBody.velocity.y < -2.0f && (Input.GetAxis("Vertical") > -1.0f))
+                        rigidBody.velocity = new Vector3(rigidBody.velocity.x, -2.0f, 0.0f);
+                    else if (rigidBody.velocity.y < -5.0f && (Input.GetAxis("Vertical") <= -1.0f))
+                        rigidBody.velocity = new Vector3(rigidBody.velocity.x, -5.0f, 0.0f);
+                }
             if (jumpOn)
             {
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);

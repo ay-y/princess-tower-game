@@ -7364,6 +7364,11 @@ Prefab:
     - {fileID: 61466541895838144, guid: b93f81e506964d44bb14f3cb843a0710, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b93f81e506964d44bb14f3cb843a0710, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1221939719 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1904224828701742, guid: 440842e48eaedf64fa7bffd1c4679575,
+    type: 2}
+  m_PrefabInternal: {fileID: 738509701}
 --- !u!1001 &1238292359
 Prefab:
   m_ObjectHideFlags: 0
@@ -12729,7 +12734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1891792216}
-  ay: {fileID: 1904224828701742, guid: 440842e48eaedf64fa7bffd1c4679575, type: 2}
+  ay: {fileID: 1221939719}
 --- !u!1001 &2138464597
 Prefab:
   m_ObjectHideFlags: 0
