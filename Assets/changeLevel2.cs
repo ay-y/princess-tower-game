@@ -6,6 +6,11 @@ public class changeLevel2 : MonoBehaviour
 {
 
     private Rigidbody rigidBody;
+    public bool started = false;
+    private float timer = 4.0f;
+
+    public AudioSource audioSource;
+
     // Use this for initialization
     void Start()
     {
@@ -13,11 +18,24 @@ public class changeLevel2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Application.LoadLevel("Tower3");
+        if (!started)
+        {
+            audioSource.Play();
+            started = true;
+        }
+
+
     }
     // Update is called once per frame
     void Update()
     {
-
+        if (started)
+        {
+            timer -= Time.deltaTime;
+        }
+        if (timer <= 0.0f)
+        {
+            Application.LoadLevel("Tower3");
+        }
     }
 }
