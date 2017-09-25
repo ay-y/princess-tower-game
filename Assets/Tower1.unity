@@ -1554,7 +1554,6 @@ GameObject:
   m_Component:
   - component: {fileID: 600336752}
   - component: {fileID: 600336751}
-  - component: {fileID: 600336753}
   m_Layer: 11
   m_Name: stone1
   m_TagString: Untagged
@@ -1617,19 +1616,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &600336753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 600336750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8eb82a2482d0b043a0b06df0e2c5907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slide: {fileID: 0}
-  player: {fileID: 0}
 --- !u!1001 &607144731
 Prefab:
   m_ObjectHideFlags: 0
