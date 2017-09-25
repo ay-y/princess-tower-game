@@ -41,7 +41,7 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        audioSource.PlayOneShot(land, 0.2f);
+        audioSource.PlayOneShot(land, 3.0f);
     }
 
     // Update is called once per frame
@@ -86,7 +86,7 @@ public class Movement : MonoBehaviour
             {
                 rigidBody.AddForce(Vector3.up * jumpForce);
                 jumpOn = false;
-                audioSource.PlayOneShot(jump, 0.5f);
+                audioSource.PlayOneShot(jump, 3.0f);
             }
 
 
@@ -146,7 +146,7 @@ public class Movement : MonoBehaviour
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);
                 rigidBody.AddForce(Vector3.right * jumpForce * 4);
                 jumpOn = false;
-                audioSource.PlayOneShot(jump, 1.0f);
+                audioSource.PlayOneShot(jump, 4.0f);
             }
             if (Input.GetAxis("Horizontal") >= 1)
             {
@@ -166,7 +166,7 @@ public class Movement : MonoBehaviour
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);
                 rigidBody.AddForce(Vector3.left * jumpForce * 4);
                 jumpOn = false;
-                audioSource.PlayOneShot(jump, 0.5f);
+                audioSource.PlayOneShot(jump, 4.0f);
             }
             if (Input.GetAxis("Horizontal") <= -1)
             {
