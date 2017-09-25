@@ -8,14 +8,15 @@ public class Movement : MonoBehaviour
 
     public Rigidbody rigidBody;
     private bool onGround = false;
-    private bool onLeft = false;
-    private bool onRight = false;
+    public bool onLeft = false;
+    public bool onRight = false;
     private bool jumpOn = false;
     AudioSource audioSource;
     public AudioClip jump;
     public AudioClip slide;
     public AudioClip land;
     private float jumpTimer = 0.0f;
+    private float slideSoundTimer = 0.0f;
 
     private SpriteRenderer sprRend;
     public float speedMultiplier = 40.0f;
@@ -65,10 +66,13 @@ public class Movement : MonoBehaviour
             if (onRight || onLeft)
             {
                 anim.SetBool("onWall", true);
+               
             }
             else
+            {
                 anim.SetBool("onWall", false);
-
+                
+            }
             anim.SetFloat("speed", rigidBody.velocity.x);
             if (rigidBody.velocity.x < 0)
             {
