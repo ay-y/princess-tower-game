@@ -3635,6 +3635,11 @@ Prefab:
       propertyPath: m_Text
       value: Level 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114369896154087118, guid: 63f4a705e5490aa47b0cdd9faf63f56c,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63f4a705e5490aa47b0cdd9faf63f56c, type: 2}
   m_IsPrefabParent: 0
