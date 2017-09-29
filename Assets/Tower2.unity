@@ -4630,6 +4630,11 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114421224110406870, guid: 440842e48eaedf64fa7bffd1c4679575,
+        type: 2}
+      propertyPath: hit
+      value: 
+      objectReference: {fileID: 8300000, guid: 37b4a598b649fc24ab1920a1dbc179c8, type: 3}
     m_RemovedComponents:
     - {fileID: 114069302648437172, guid: 440842e48eaedf64fa7bffd1c4679575, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 440842e48eaedf64fa7bffd1c4679575, type: 2}

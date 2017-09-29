@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     public AudioClip jump;
     public AudioClip slide;
     public AudioClip land;
+    public AudioClip hit;
     private float jumpTimer = 0.0f;
     private float slideSoundTimer = 0.0f;
 
@@ -41,7 +42,10 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        audioSource.PlayOneShot(land, 5.0f);
+        if (other.tag == "bat") 
+            audioSource.PlayOneShot(hit, 2.5f);
+        else
+           audioSource.PlayOneShot(land, 1.0f);
     }
 
     // Update is called once per frame
@@ -86,7 +90,7 @@ public class Movement : MonoBehaviour
             {
                 rigidBody.AddForce(Vector3.up * jumpForce);
                 jumpOn = false;
-                audioSource.PlayOneShot(jump, 3.0f);
+                audioSource.PlayOneShot(jump, 1.5f);
             }
 
 
@@ -153,7 +157,7 @@ public class Movement : MonoBehaviour
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);
                 rigidBody.AddForce(Vector3.right * jumpForce * 4);
                 jumpOn = false;
-                audioSource.PlayOneShot(jump, 4.0f);
+                audioSource.PlayOneShot(jump, 1.5f);
             }
             if (Input.GetAxis("Horizontal") >= 1)
             {
@@ -175,7 +179,7 @@ public class Movement : MonoBehaviour
                 rigidBody.AddForce(Vector3.up * jumpForce * 1);
                 rigidBody.AddForce(Vector3.left * jumpForce * 4);
                 jumpOn = false;
-                audioSource.PlayOneShot(jump, 4.0f);
+                audioSource.PlayOneShot(jump, 1.5f);
             }
             if (Input.GetAxis("Horizontal") <= -1)
             {
